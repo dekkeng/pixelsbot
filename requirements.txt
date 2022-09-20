@@ -1,0 +1,7 @@
+keyboard==0.13.5
+PyAutoGUI==0.9.53
+pypiwin32==223
+pywin32==302
+Pillow==8.4.0
+opencv-python==4.5.4.58
+python-dotenv==0.21.0

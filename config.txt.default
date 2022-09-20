@@ -1,0 +1,12 @@
+START_MAP_WALK_DIR          = "down"
+START_MAP_WALK_STEP         = 0.1
+WARP_NEAR_DECISION          = 150
+WARP_NEAR_STEP              = 0.3
+WARP_NEAR_TRY_LIMIT         = 100
+EMPTY_CONFIDENCE            = 0.6
+GROW1_CONFIDENCE            = 0.8
+GROW2_CONFIDENCE            = 0.8
+FULL_CONFIDENCE             = 0.75
+FERTILIZE_CONFIDENCE        = 0.9
+WARP_CONFIDENCE             = 0.7
+REFILL_AMOUNT_PER_MAP       = 10
