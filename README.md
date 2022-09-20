@@ -13,7 +13,7 @@ Adjust values inside config.txt file to suit your screen and run bot smoothly.
 1. Clone the repository to a folder
 2. Open Powershell to the folder that you extracted from step 1.
 3. Run this command in Powershell: `pip install -r requirements.txt`
-4. Login to pixels game and go to farm that you want to use the bot (farm121 is recommended).
+4. Login to pixels game and go to farm that you want to use the bot (farm121 is recommended https://play.pixels.xyz/farm121).
 5. capture all images with your screen by check images in sample folder to see what should be captured and replace it with your samples
 6. Start the bot by double click to run pixelsbot.py file for normal farm bot,
    fertilize.py for fertilize bot
