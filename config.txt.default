@@ -1,4 +1,4 @@
-START_MAP_WALK_DIR          = "down"
+START_MAP_WALK_DIR          = down
 START_MAP_WALK_STEP         = 0.1
 WARP_NEAR_DECISION          = 150
 WARP_NEAR_STEP              = 0.3
