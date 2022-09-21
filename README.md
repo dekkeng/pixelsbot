@@ -96,6 +96,12 @@ Adjust values inside config.txt file to suit your screen and run bot smoothly.
    How many times to refill energy on each map
    
    `default` 10
+      
+### WAIT_DURATION_AFTER_WARP
+
+   How many second to wait after warp
+   
+   `default` 10
 
 # Remarks
 - This bot is created very quickly and might have some glitchs or bugs.
@@ -103,6 +109,9 @@ Adjust values inside config.txt file to suit your screen and run bot smoothly.
   0xbf20064C795362e7A87F6d21fe3C57Bd99e4a9A5
 
 # Changelog
+## v 0.0.6
++ Added `WAIT_DURATION_AFTER_WARP` configs
+
 ## v 0.0.5
 + Added config file and sample default
 + Added `START_MAP_WALK_DIR` and `START_MAP_WALK_STEP` configs

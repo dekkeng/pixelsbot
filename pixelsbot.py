@@ -13,8 +13,6 @@ try:
         player.plantAll()
         player.refillEnergy()
         player.warpNext()
-
-        sleep(10)
 except Exception as e:
     player.log(e)
     pass

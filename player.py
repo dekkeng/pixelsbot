@@ -20,6 +20,7 @@ class Player:
         self.FERTILIZE_CONFIDENCE = float(os.getenv('FERTILIZE_CONFIDENCE', 0.9))
         self.WARP_CONFIDENCE = float(os.getenv('WARP_CONFIDENCE', 0.7))
         self.REFILL_AMOUNT_PER_MAP = float(os.getenv('REFILL_AMOUNT_PER_MAP', 10))
+        self.WAIT_DURATION_AFTER_WARP = float(os.getenv('WAIT_DURATION_AFTER_WARP', 10))
 
         self.updatePos()
 
@@ -107,6 +108,7 @@ class Player:
             sleep(0.01)
         if warp_pos != None:
             self.click(warp_pos)
+            sleep(self.WAIT_DURATION_AFTER_WARP)
 
 
     def clickScissor(self):
