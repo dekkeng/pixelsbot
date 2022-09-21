@@ -80,7 +80,7 @@ class Player:
         #self.walk("left")
         self.updatePos()
         while self.body != None and count < self.REFILL_AMOUNT_PER_MAP:
-            self.click(self.body)
+            self.click([self.body[0], self.body[1]+20])
             count = count+1
         #self.walk("right")
         self.move(self.chat)
