@@ -138,7 +138,7 @@ class Player:
         pyautogui.moveTo(pos)
         
     def click(self, pos):
-        pyautogui.click([uniform(pos[0]-self.RANDOM_CLICK_SIZE, pos[0]+self.RANDOM_CLICK_SIZE), uniform(pos[1]-self.RANDOM_CLICK_SIZE, pos[1]+self.RANDOM_CLICK_SIZE)])
+        pyautogui.click([uniform(pos[0], pos[0]+self.RANDOM_CLICK_SIZE), uniform(pos[1], pos[1]+self.RANDOM_CLICK_SIZE)])
         
     def log(self, msg):
         """Msg log"""
