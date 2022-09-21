@@ -40,6 +40,7 @@ Adjust values inside config.txt file to suit your screen and run bot smoothly.
 | WARP_CONFIDENCE | Percentage confidence to find matching warp.png image on screen | Percentage | 0.7 |  |
 | REFILL_AMOUNT_PER_MAP | How many times to refill energy on each map | Count | 10 |  |
 | WAIT_DURATION_AFTER_WARP | How many second to wait after warp | Second | 10 |  |
+| RANDOM_CLICK_SIZE | To prevent bot detection it will slightly random click position | Pixel | 5 |  |
 
 # Remarks
 - This bot is created very quickly and might have some glitchs or bugs.
@@ -47,6 +48,10 @@ Adjust values inside config.txt file to suit your screen and run bot smoothly.
   0xbf20064C795362e7A87F6d21fe3C57Bd99e4a9A5
 
 # Changelog
+## v 0.0.8
++ Added slight random click feature
++ Added `RANDOM_CLICK_SIZE` configs
+
 ## v 0.0.7
 + Added rotten.png sample image
 + Added clean rotten out when harvest

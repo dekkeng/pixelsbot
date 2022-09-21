@@ -2,6 +2,7 @@ import os, pyautogui
 from time import sleep
 from datetime import datetime
 from dotenv import load_dotenv
+from random import uniform
 
 load_dotenv("config.txt")
 
@@ -22,6 +23,7 @@ class Player:
         self.WARP_CONFIDENCE = float(os.getenv('WARP_CONFIDENCE', 0.7))
         self.REFILL_AMOUNT_PER_MAP = float(os.getenv('REFILL_AMOUNT_PER_MAP', 10))
         self.WAIT_DURATION_AFTER_WARP = float(os.getenv('WAIT_DURATION_AFTER_WARP', 10))
+        self.RANDOM_CLICK_SIZE = float(os.getenv('RANDOM_CLICK_SIZE', 5))
 
         self.updatePos()
 
@@ -49,18 +51,18 @@ class Player:
         self.clickScissor()
         for f in list(self.full) + list(self.rotten):
             self.click(f)
-            sleep(0.01)
+            self.wait()
         self.clickScissor()
         self.move(self.chat)
-        sleep(1)
+        self.wait(1)
     def plantAll(self):
         self.log("Plant")
         self.updatePos()
         self.clickSeed()
         for e in self.empty:
             self.click(e)
-            sleep(0.01)
-        sleep(1)
+            self.wait()
+        self.wait(1)
         self.move(self.chat)
     def fertilizeAll(self):
         self.log("Fertilize")
@@ -68,8 +70,8 @@ class Player:
         self.clickFertilize()
         for fe in list(self.grow1) + list(self.grow2):
             self.click(fe)
-            sleep(0.01)
-        sleep(1)
+            self.wait()
+        self.wait(1)
         self.move(self.chat)
     def refillEnergy(self):
         self.log("Refill")
@@ -89,7 +91,7 @@ class Player:
         while near == False and count < self.WARP_NEAR_TRY_LIMIT:
             self.updatePos()
             count = count+1
-            sleep(0.01)
+            self.wait()
             if self.warp != None and self.body != None and len(self.warp) != 0:
                 self.warp.sort(key=lambda w: w[0], reverse = True)
                 warp_left = self.warp[0][0]
@@ -107,7 +109,7 @@ class Player:
                 else:
                     near = True
                     self.click([warp_left+10, warp_down+10])
-                    sleep(self.WAIT_DURATION_AFTER_WARP)
+                    self.wait(self.WAIT_DURATION_AFTER_WARP)
 
 
     def clickScissor(self):
@@ -127,14 +129,16 @@ class Player:
 
     def walk(self, dir, length = 0.05):
         pyautogui.keyDown(dir)
-        sleep(length)
+        self.wait(length)
         pyautogui.keyUp(dir)
+    def wait(self, length = 0.01):
+        sleep(uniform(length-0.01, length+0.01))
 
     def move(self, pos):
         pyautogui.moveTo(pos)
         
     def click(self, pos):
-        pyautogui.click(pos)
+        pyautogui.click([uniform(pos[0]-self.RANDOM_CLICK_SIZE, pos[0]+self.RANDOM_CLICK_SIZE), uniform(pos[1]-self.RANDOM_CLICK_SIZE, pos[1]+self.RANDOM_CLICK_SIZE)])
         
     def log(self, msg):
         """Msg log"""

@@ -1,6 +1,5 @@
 from time import sleep
 from player import Player
-import keyboard
 
 
 sleep(2)
