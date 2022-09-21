@@ -13,12 +13,12 @@ This is a farm bot for pixels.xyz
 ```bash
 pip install -r requirements.txt
 ```
-4. Copy config.txt.default to config.txt file
-5. Copy sample.default to sample folder
-6. Captured your Pixels game screen and crop it just like sample images on each one (name.png will use your name above your avatar with least background).
-7. Start the bot by double click at pixelsbot.py or use command python pixelsbot.py in Powershell (You need to open the game at maximized on this step).
-7. If it not doing right, you need to adjust configurations in config.txt to fir your screen. (You need to change the values and try few times until it works) This should be one time work.
-8. If you want to stop you just open something to hide the game screen and close your running script window.
+5. Copy config.txt.default to config.txt file
+6. Copy sample.default to sample folder
+7. Captured your Pixels game screen and crop it just like sample images on each one (name.png will use your name above your avatar with least background).
+8. Start the bot by double click at pixelsbot.py or use command python pixelsbot.py in Powershell (You need to open the game at maximized on this step).
+9. If it not doing right, you need to adjust configurations in config.txt to fir your screen. (You need to change the values and try few times until it works) This should be one time work.
+10. If you want to stop you just open something to hide the game screen and close your running script window.
 
 # Configuration
 There are default configurations that suit my screen, but you can adjust to suit your screen.
