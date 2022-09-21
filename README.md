@@ -34,6 +34,7 @@ Adjust values inside config.txt file to suit your screen and run bot smoothly.
 | GROW1_CONFIDENCE | Percentage confidence to find matching grow1.png image on screen | Percentage | 0.8 |  |
 | GROW2_CONFIDENCE | Percentage confidence to find matching grow2.png image on screen | Percentage | 0.8 |  |
 | FULL_CONFIDENCE | Percentage confidence to find matching full.png image on screen | Percentage | 0.75 |  |
+| ROTTEN_CONFIDENCE | Percentage confidence to find matching rotten.png image on screen | Percentage | 0.8 |  |
 | FERTILIZE_CONFIDENCE | Percentage confidence to find matching fertilize.png image on screen | Percentage | 0.9 |  |
 | WARP_CONFIDENCE | Percentage confidence to find matching warp.png image on screen | Percentage | 0.7 |  |
 | REFILL_AMOUNT_PER_MAP | How many times to refill energy on each map | Count | 10 |  |
@@ -45,6 +46,10 @@ Adjust values inside config.txt file to suit your screen and run bot smoothly.
   0xbf20064C795362e7A87F6d21fe3C57Bd99e4a9A5
 
 # Changelog
+## v 0.0.7
++ Added rotten.png sample image
++ Added clean rotten out when harvest
+
 ## v 0.0.6
 + Added `WAIT_DURATION_AFTER_WARP` configs
 
