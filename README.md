@@ -23,85 +23,21 @@ pip install -r requirements.txt
 There are default configurations that suit my screen, but you can adjust to suit your screen.
 Adjust values inside config.txt file to suit your screen and run bot smoothly.
 
-### START_MAP_WALK_DIR
-
-   To move when start the new map in which direction
-   
-   `default` down
-   
-   `options` down, up, left, right
-   
-### START_MAP_WALK_STEP
-
-   How many seconds will you walk at the start of the new map
-   
-   `default` 0.1
-   
-### WARP_NEAR_DECISION
-
-   How many screen pixels to decide that you are near the warp enough to be able to go through it
-   
-   `default` 150
-      
-### WARP_NEAR_STEP
-
-   How many seconds for each walk try to go to the warp
-   
-   `default` 0.3
-      
-### WARP_NEAR_TRY_LIMIT
-
-   Maximum times to try to go to warp
-   
-   `default` 100
-      
-### EMPTY_CONFIDENCE
-
-   Percentage confidence to find matching empty.png image on screen
-   
-   `default` 0.6
-         
-### GROW1_CONFIDENCE
-
-   Percentage confidence to find matching grow1.png image on screen
-   
-   `default` 0.8
-         
-### GROW2_CONFIDENCE
-
-   Percentage confidence to find matching grow2.png image on screen
-   
-   `default` 0.8
-         
-### FULL_CONFIDENCE
-
-   Percentage confidence to find matching full.png image on screen
-   
-   `default` 0.75
-   
-### FERTILIZE_CONFIDENCE
-
-   Percentage confidence to find matching fertilize.png image on screen
-   
-   `default` 0.9
-      
-### WARP_CONFIDENCE
-
-   Percentage confidence to find matching warp.png image on screen
-   
-   `default` 0.7
-      
-### REFILL_AMOUNT_PER_MAP
-
-   How many times to refill energy on each map
-   
-   `default` 10
-      
-### WAIT_DURATION_AFTER_WARP
-
-   How many second to wait after warp
-   
-   `default` 10
+| Name | Description | Type | Default | Options |
+| --- | --- | --- | --- | --- |
+| START_MAP_WALK_DIR | To move when start the new map in which direction | Option | down | down, up, left, right |
+| START_MAP_WALK_STEP | How many seconds will you walk at the start of the new map | Second | 0.1 |  |
+| WARP_NEAR_DECISION | How many screen pixels to decide that you are near the warp enough to be able to go through it | Pixel | 150 |  |
+| WARP_NEAR_STEP | How many seconds for each walk try to go to the warp | Second | 0.3 |  |
+| WARP_NEAR_TRY_LIMIT | Maximum times to try to go to warp | Count | 100 |  |
+| EMPTY_CONFIDENCE | Percentage confidence to find matching empty.png image on screen | Percentage | 0.6 |  |
+| GROW1_CONFIDENCE | Percentage confidence to find matching grow1.png image on screen | Percentage | 0.8 |  |
+| GROW2_CONFIDENCE | Percentage confidence to find matching grow2.png image on screen | Percentage | 0.8 |  |
+| FULL_CONFIDENCE | Percentage confidence to find matching full.png image on screen | Percentage | 0.75 |  |
+| FERTILIZE_CONFIDENCE | Percentage confidence to find matching fertilize.png image on screen | Percentage | 0.9 |  |
+| WARP_CONFIDENCE | Percentage confidence to find matching warp.png image on screen | Percentage | 0.7 |  |
+| REFILL_AMOUNT_PER_MAP | How many times to refill energy on each map | Count | 10 |  |
+| WAIT_DURATION_AFTER_WARP | How many second to wait after warp | Second | 10 |  |
 
 # Remarks
 - This bot is created very quickly and might have some glitchs or bugs.
