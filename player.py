@@ -113,13 +113,17 @@ class Player:
 
 
     def clickScissor(self):
-        self.click(self.scissor)
+        if self.scissor != None:
+            self.click(self.scissor)
     def clickFertilize(self):
-        self.click(self.fertilize)
+        if self.fertilize != None:
+            self.click(self.fertilize)
     def clickSeed(self):
-        self.click(self.seed)
+        if self.seed != None:
+            self.click(self.seed)
     def clickCarrot(self):
-        self.click(self.carrot)
+        if self.carrot != None:
+            self.click(self.carrot)
 
     def getPos(self, file, conf = 0.6):
         return pyautogui.locateCenterOnScreen('./sample/'+file+'.png', confidence = conf)
