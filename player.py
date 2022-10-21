@@ -54,40 +54,48 @@ class Player:
         self.wait(0.5)
         self.updatePos()
         self.clickScissor()
+        scissor_pos = self.scissor
         for f in list(self.full) + list(self.rotten) + list(self.rotten2):
             self.click(f)
             self.wait()
-        self.clickScissor()
-        self.move(self.chat)
         self.wait(1)
+        self.click(scissor_pos)
+        self.move(self.chat)
     def plantAll(self):
         self.log("Plant")
         self.updatePos()
         self.clickSeed()
+        seed_pos = self.seed
         for e in self.empty:
             self.click(e)
             self.wait()
         self.wait(1)
+        self.click(seed_pos)
         self.move(self.chat)
     def fertilizeAll(self):
         self.log("Fertilize")
         self.updatePos()
         self.clickFertilize()
+        fert_pos = self.fertilize
         for fe in list(self.grow1) + list(self.grow2):
             self.click(fe)
             self.wait()
         self.wait(1)
+        self.click(fert_pos)
         self.move(self.chat)
     def refillEnergy(self):
         self.log("Refill")
         count = 0
-        self.clickCarrot()
+        self.clickFruit()
+        fruit_pos = self.fruit
         #self.walk("left")
         self.updatePos()
         while self.avatar != None and count < self.REFILL_AMOUNT_PER_MAP:
             self.click([self.avatar[0], self.avatar[1]])
             count = count+1
         #self.walk("right")
+        self.wait(1)
+        self.click(fruit_pos)
         self.move(self.chat)
     def warpNext(self):
         self.log("Warp")
@@ -126,7 +134,7 @@ class Player:
     def clickSeed(self):
         if self.seed != None:
             self.click(self.seed)
-    def clickCarrot(self):
+    def clickFruit(self):
         if self.fruit != None:
             self.click(self.fruit)
 
