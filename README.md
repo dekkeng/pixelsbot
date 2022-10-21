@@ -15,7 +15,7 @@ pip install -r requirements.txt
 ```
 5. Copy config.txt.default to config.txt file
 6. Copy sample.default to sample folder
-7. Captured your Pixels game screen and crop it just like sample images on each one (name.png will use your name above your avatar with least background).
+7. Captured your Pixels game screen and crop it just like sample images on each one (avatar.png will use your avatar with least background).
 8. Start the bot by double click at pixelsbot.py or use command python pixelsbot.py in Powershell (You need to open the game at maximized on this step).
 9. If it not doing right, you need to adjust configurations in config.txt to fir your screen. (You need to change the values and try few times until it works) This should be one time work.
 10. If you want to stop you just open something to hide the game screen and close your running script window.
@@ -26,6 +26,7 @@ Adjust values inside config.txt file to suit your screen and run bot smoothly.
 
 | Name | Description | Type | Default | Options |
 | --- | --- | --- | --- | --- |
+| PLANT_TYPE | Which plant to use | Option | carrot | carrot, gold |
 | START_MAP_WALK_DIR | To move when start the new map in which direction | Option | down | down, up, left, right |
 | START_MAP_WALK_STEP | How many seconds will you walk at the start of the new map | Second | 0.1 |  |
 | WARP_NEAR_DECISION | How many screen pixels to decide that you are near the warp enough to be able to go through it | Pixel | 150 |  |
@@ -36,6 +37,7 @@ Adjust values inside config.txt file to suit your screen and run bot smoothly.
 | GROW2_CONFIDENCE | Percentage confidence to find matching grow2.png image on screen | Percentage | 0.8 |  |
 | FULL_CONFIDENCE | Percentage confidence to find matching full.png image on screen | Percentage | 0.75 |  |
 | ROTTEN_CONFIDENCE | Percentage confidence to find matching rotten.png image on screen | Percentage | 0.8 |  |
+| ROTTEN2_CONFIDENCE | Percentage confidence to find matching rotten2.png image on screen | Percentage | 0.9 |  |
 | FERTILIZE_CONFIDENCE | Percentage confidence to find matching fertilize.png image on screen | Percentage | 0.9 |  |
 | WARP_CONFIDENCE | Percentage confidence to find matching warp.png image on screen | Percentage | 0.7 |  |
 | REFILL_AMOUNT_PER_MAP | How many times to refill energy on each map | Count | 10 |  |
@@ -48,6 +50,13 @@ Adjust values inside config.txt file to suit your screen and run bot smoothly.
   0xbf20064C795362e7A87F6d21fe3C57Bd99e4a9A5
 
 # Changelog
+## v 0.0.10
++ Update avatar locate instead of name
+
+## v 0.0.9
++ Added plant type gold
++ Added `PLANT_TYPE` and `ROTTEN2_CONFIDENCE` configs
+
 ## v 0.0.8
 + Added slight random click feature
 + Added `RANDOM_CLICK_SIZE` configs

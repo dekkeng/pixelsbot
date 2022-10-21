@@ -1,3 +1,4 @@
+PLANT_TYPE                  = carrot
 START_MAP_WALK_DIR          = down
 START_MAP_WALK_STEP         = 0.1
 WARP_NEAR_DECISION          = 150
@@ -8,6 +9,7 @@ GROW1_CONFIDENCE            = 0.8
 GROW2_CONFIDENCE            = 0.8
 FULL_CONFIDENCE             = 0.75
 ROTTEN_CONFIDENCE           = 0.8
+ROTTEN2_CONFIDENCE          = 0.9
 FERTILIZE_CONFIDENCE        = 0.9
 WARP_CONFIDENCE             = 0.7
 REFILL_AMOUNT_PER_MAP       = 10

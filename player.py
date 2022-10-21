@@ -9,6 +9,7 @@ load_dotenv("config.txt")
 class Player:
     def __init__(self):
 
+        self.PLANT_TYPE = os.getenv('PLANT_TYPE', "carrot")
         self.START_MAP_WALK_DIR = os.getenv('START_MAP_WALK_DIR', "down")
         self.START_MAP_WALK_STEP = float(os.getenv('START_MAP_WALK_STEP', 0.1))
         self.WARP_NEAR_DECISION = float(os.getenv('WARP_NEAR_DECISION', 150))
@@ -19,6 +20,7 @@ class Player:
         self.GROW2_CONFIDENCE = float(os.getenv('GROW2_CONFIDENCE', 0.8))
         self.FULL_CONFIDENCE = float(os.getenv('FULL_CONFIDENCE', 0.75))
         self.ROTTEN_CONFIDENCE = float(os.getenv('ROTTEN_CONFIDENCE', 0.75))
+        self.ROTTEN2_CONFIDENCE = float(os.getenv('ROTTEN2_CONFIDENCE', 0.8))
         self.FERTILIZE_CONFIDENCE = float(os.getenv('FERTILIZE_CONFIDENCE', 0.9))
         self.WARP_CONFIDENCE = float(os.getenv('WARP_CONFIDENCE', 0.7))
         self.REFILL_AMOUNT_PER_MAP = float(os.getenv('REFILL_AMOUNT_PER_MAP', 10))
@@ -29,27 +31,30 @@ class Player:
 
     def updatePos(self):
         self.empty = self.getAllPos("empty", self.EMPTY_CONFIDENCE)
-        self.grow1 = self.getAllPos("grow1", self.GROW1_CONFIDENCE)
-        self.grow2 = self.getAllPos("grow2", self.GROW2_CONFIDENCE)
-        self.full = self.getAllPos("full", self.FULL_CONFIDENCE)
-        self.rotten = self.getAllPos("rotten", self.ROTTEN_CONFIDENCE)
+        self.grow1 = self.getAllPos(self.PLANT_TYPE + "/grow1", self.GROW1_CONFIDENCE)
+        self.grow2 = self.getAllPos(self.PLANT_TYPE + "/grow2", self.GROW2_CONFIDENCE)
+        self.full = self.getAllPos(self.PLANT_TYPE + "/full", self.FULL_CONFIDENCE)
+        self.rotten = self.getAllPos(self.PLANT_TYPE + "/rotten", self.ROTTEN_CONFIDENCE)
+        self.rotten2 = self.getAllPos(self.PLANT_TYPE + "/rotten2", self.ROTTEN2_CONFIDENCE)
         self.warp = list(self.getAllPos("warp", self.WARP_CONFIDENCE))
         self.scissor = self.getPos("scissor")
-        self.seed = self.getPos("seed") 
-        self.carrot = self.getPos("carrot")
+        self.seed = self.getPos(self.PLANT_TYPE + "/seed") 
+        self.fruit = self.getPos(self.PLANT_TYPE + "/fruit")
         self.fertilize = self.getPos("fertilize")
-        self.name = self.getPos("name")
+        #self.name = self.getPos("name")
         self.chat = self.getPos("chat")
-        self.body = None
-        if self.name :
-            self.body = self.name + (0, 70)
+        self.avatar = self.getPos("avatar")
+        #if self.name :
+        #    self.avatar = self.name + (0, 70)
     
     def havestAll(self):
         self.log("Harvest")
         self.walk(self.START_MAP_WALK_DIR, self.START_MAP_WALK_STEP)
+        self.walk("right", 0.03)
+        self.wait(0.5)
         self.updatePos()
         self.clickScissor()
-        for f in list(self.full) + list(self.rotten):
+        for f in list(self.full) + list(self.rotten) + list(self.rotten2):
             self.click(f)
             self.wait()
         self.clickScissor()
@@ -79,8 +84,8 @@ class Player:
         self.clickCarrot()
         #self.walk("left")
         self.updatePos()
-        while self.body != None and count < self.REFILL_AMOUNT_PER_MAP:
-            self.click([self.body[0], self.body[1]+20])
+        while self.avatar != None and count < self.REFILL_AMOUNT_PER_MAP:
+            self.click([self.avatar[0], self.avatar[1]])
             count = count+1
         #self.walk("right")
         self.move(self.chat)
@@ -92,19 +97,19 @@ class Player:
             self.updatePos()
             count = count+1
             self.wait()
-            if self.warp != None and self.body != None and len(self.warp) != 0:
+            if self.warp != None and self.avatar != None and len(self.warp) != 0:
                 self.warp.sort(key=lambda w: w[0], reverse = True)
                 warp_left = self.warp[0][0]
-                body_left = self.body[0]
+                avatar_left = self.avatar[0]
                 warp_down = self.warp[0][1]
-                body_down = self.body[1]
-                if warp_left - body_left > self.WARP_NEAR_DECISION:
+                avatar_down = self.avatar[1]
+                if warp_left - avatar_left > self.WARP_NEAR_DECISION:
                     self.walk("right", self.WARP_NEAR_STEP)
-                elif warp_left - body_left < self.WARP_NEAR_DECISION*-1:
+                elif warp_left - avatar_left < self.WARP_NEAR_DECISION*-1:
                     self.walk("left", self.WARP_NEAR_STEP)
-                elif warp_down - body_down > self.WARP_NEAR_DECISION:
+                elif warp_down - avatar_down > self.WARP_NEAR_DECISION:
                     self.walk("down", self.WARP_NEAR_STEP)
-                elif warp_down - body_down < self.WARP_NEAR_DECISION*-1:
+                elif warp_down - avatar_down < self.WARP_NEAR_DECISION*-1:
                     self.walk("up", self.WARP_NEAR_STEP)
                 else:
                     near = True
@@ -122,8 +127,8 @@ class Player:
         if self.seed != None:
             self.click(self.seed)
     def clickCarrot(self):
-        if self.carrot != None:
-            self.click(self.carrot)
+        if self.fruit != None:
+            self.click(self.fruit)
 
     def getPos(self, file, conf = 0.6):
         return pyautogui.locateCenterOnScreen('./sample/'+file+'.png', confidence = conf)
