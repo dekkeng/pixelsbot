@@ -23,6 +23,8 @@ class Player:
         self.ROTTEN2_CONFIDENCE = float(os.getenv('ROTTEN2_CONFIDENCE', 0.8))
         self.FERTILIZE_CONFIDENCE = float(os.getenv('FERTILIZE_CONFIDENCE', 0.9))
         self.WARP_CONFIDENCE = float(os.getenv('WARP_CONFIDENCE', 0.7))
+        self.AVATAR_CONFIDENCE = float(os.getenv('AVATAR_CONFIDENCE', 0.9))
+        self.AVATAR2_CONFIDENCE = float(os.getenv('AVATAR2_CONFIDENCE', 0.9))
         self.REFILL_AMOUNT_PER_MAP = float(os.getenv('REFILL_AMOUNT_PER_MAP', 10))
         self.WAIT_DURATION_AFTER_WARP = float(os.getenv('WAIT_DURATION_AFTER_WARP', 10))
         self.RANDOM_CLICK_SIZE = float(os.getenv('RANDOM_CLICK_SIZE', 5))
@@ -43,7 +45,8 @@ class Player:
         self.fertilize = self.getPos("fertilize")
         #self.name = self.getPos("name")
         self.chat = self.getPos("chat")
-        self.avatar = self.getPos("avatar")
+        self.avatar = self.getPos("avatar", self.AVATAR_CONFIDENCE)
+        self.avatar2 = self.getPos("avatar2", self.AVATAR2_CONFIDENCE)
         #if self.name :
         #    self.avatar = self.name + (0, 70)
     
@@ -90,8 +93,11 @@ class Player:
         fruit_pos = self.fruit
         #self.walk("left")
         self.updatePos()
-        while self.avatar != None and count < self.REFILL_AMOUNT_PER_MAP:
-            self.click([self.avatar[0], self.avatar[1]])
+        while (self.avatar != None or self.avatar2 != None) and count < self.REFILL_AMOUNT_PER_MAP:
+            if self.avatar != None:
+                self.click([self.avatar[0], self.avatar[1]])
+            else:
+                self.click([self.avatar2[0], self.avatar2[1]])
             count = count+1
         #self.walk("right")
         self.wait(1)
@@ -105,12 +111,16 @@ class Player:
             self.updatePos()
             count = count+1
             self.wait()
-            if self.warp != None and self.avatar != None and len(self.warp) != 0:
+            if self.warp != None and (self.avatar != None or self.avatar2 != None) and len(self.warp) != 0:
                 self.warp.sort(key=lambda w: w[0], reverse = True)
                 warp_left = self.warp[0][0]
-                avatar_left = self.avatar[0]
                 warp_down = self.warp[0][1]
-                avatar_down = self.avatar[1]
+                if self.avatar != None:
+                    avatar_left = self.avatar[0]
+                    avatar_down = self.avatar[1]
+                else:
+                    avatar_left = self.avatar2[0]
+                    avatar_down = self.avatar2[1]
                 if warp_left - avatar_left > self.WARP_NEAR_DECISION:
                     self.walk("right", self.WARP_NEAR_STEP)
                 elif warp_left - avatar_left < self.WARP_NEAR_DECISION*-1:

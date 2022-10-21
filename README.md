@@ -40,6 +40,8 @@ Adjust values inside config.txt file to suit your screen and run bot smoothly.
 | ROTTEN2_CONFIDENCE | Percentage confidence to find matching rotten2.png image on screen | Percentage | 0.9 |  |
 | FERTILIZE_CONFIDENCE | Percentage confidence to find matching fertilize.png image on screen | Percentage | 0.9 |  |
 | WARP_CONFIDENCE | Percentage confidence to find matching warp.png image on screen | Percentage | 0.7 |  |
+| AVATAR_CONFIDENCE | Percentage confidence to find matching avatar.png image on screen | Percentage | 0.9 |  |
+| AVATAR2_CONFIDENCE | Percentage confidence to find matching avatar2.png image on screen | Percentage | 0.9 |  |
 | REFILL_AMOUNT_PER_MAP | How many times to refill energy on each map | Count | 10 |  |
 | WAIT_DURATION_AFTER_WARP | How many second to wait after warp | Second | 10 |  |
 | RANDOM_CLICK_SIZE | To prevent bot detection it will slightly random click position | Pixel | 5 |  |
@@ -51,7 +53,11 @@ Adjust values inside config.txt file to suit your screen and run bot smoothly.
 
 # Changelog
 ## v 0.0.10
++ Update support new version
 + Update avatar locate instead of name
++ Added avatar.png sample image
++ Added avatar2.png sample image
++ Added `AVATAR_CONFIDENCE` and `AVATAR2_CONFIDENCE` configs
 
 ## v 0.0.9
 + Added plant type gold
