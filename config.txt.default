@@ -8,6 +8,7 @@ EMPTY_CONFIDENCE            = 0.7
 GROW1_CONFIDENCE            = 0.85
 GROW2_CONFIDENCE            = 0.85
 FULL_CONFIDENCE             = 0.9
+DRY_CONFIDENCE              = 0.9
 ROTTEN_CONFIDENCE           = 0.8
 ROTTEN2_CONFIDENCE          = 0.9
 FERTILIZE_CONFIDENCE        = 0.9

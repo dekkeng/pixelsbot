@@ -40,6 +40,7 @@ Adjust values inside config.txt file to suit your screen and run bot smoothly.
 | GROW1_CONFIDENCE | Percentage confidence to find matching grow1.png image on screen | Percentage | 0.8 |  |
 | GROW2_CONFIDENCE | Percentage confidence to find matching grow2.png image on screen | Percentage | 0.8 |  |
 | FULL_CONFIDENCE | Percentage confidence to find matching full.png image on screen | Percentage | 0.75 |  |
+| DRY_CONFIDENCE | Percentage confidence to find matching dry.png image on screen | Percentage | 0.75 |  |
 | ROTTEN_CONFIDENCE | Percentage confidence to find matching rotten.png image on screen | Percentage | 0.8 |  |
 | ROTTEN2_CONFIDENCE | Percentage confidence to find matching rotten2.png image on screen | Percentage | 0.9 |  |
 | FERTILIZE_CONFIDENCE | Percentage confidence to find matching fertilize.png image on screen | Percentage | 0.9 |  |
@@ -63,6 +64,8 @@ Adjust values inside config.txt file to suit your screen and run bot smoothly.
 + Added butterberry type sample image
 + You can now config PLANT_TYPE to popberry or butterberry
 + Added watering system
++ Added dry.png sample image
++ Added `DRY_CONFIDENCE` configs
 + Added `WAIT_AFTER_WATER` configs
 + Added `MOVEMENT_DURATION` configs
 - Disabled warp to next farm

@@ -19,6 +19,7 @@ class Player:
         self.GROW1_CONFIDENCE = float(os.getenv('GROW1_CONFIDENCE', 0.8))
         self.GROW2_CONFIDENCE = float(os.getenv('GROW2_CONFIDENCE', 0.8))
         self.FULL_CONFIDENCE = float(os.getenv('FULL_CONFIDENCE', 0.75))
+        self.DRY_CONFIDENCE = float(os.getenv('DRY_CONFIDENCE', 0.75))
         self.ROTTEN_CONFIDENCE = float(os.getenv('ROTTEN_CONFIDENCE', 0.75))
         self.ROTTEN2_CONFIDENCE = float(os.getenv('ROTTEN2_CONFIDENCE', 0.8))
         self.FERTILIZE_CONFIDENCE = float(os.getenv('FERTILIZE_CONFIDENCE', 0.9))
@@ -38,6 +39,7 @@ class Player:
         self.grow1 = self.getAllPos(self.PLANT_TYPE + "/grow1", self.GROW1_CONFIDENCE)
         self.grow2 = self.getAllPos(self.PLANT_TYPE + "/grow2", self.GROW2_CONFIDENCE)
         self.full = self.getAllPos(self.PLANT_TYPE + "/full", self.FULL_CONFIDENCE)
+        self.dry = self.getAllPos("dry", self.DRY_CONFIDENCE)
         self.rotten = self.getAllPos(self.PLANT_TYPE + "/rotten", self.ROTTEN_CONFIDENCE)
         self.rotten2 = self.getAllPos(self.PLANT_TYPE + "/rotten2", self.ROTTEN2_CONFIDENCE)
         self.warp = list(self.getAllPos("warp", self.WARP_CONFIDENCE))
@@ -83,7 +85,7 @@ class Player:
         self.updatePos()
         self.clickWater()
         water_pos = self.water
-        for e in list(self.grow1) + list(self.grow2):
+        for e in list(self.grow1) + list(self.grow2) + list(self.dry):
             self.click(e)
             self.wait()
         self.wait(1)
