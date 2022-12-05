@@ -10,8 +10,9 @@ try:
     while True:
         player.havestAll()
         player.plantAll()
-        player.refillEnergy()
-        player.warpNext()
+        player.waterAll()
+        #player.refillEnergy()
+        #player.warpNext()
 except Exception as e:
     player.log(e)
     pass

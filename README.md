@@ -1,5 +1,9 @@
 # Farm Bot for pixels.xyz game
-This is a farm bot for pixels.xyz
+This is a farm bot for pixels.xyz [For education purpose only]
+This will plant seeds and watering, wait for xx seconds and harvest for you infinity loop.
+Not yet imprement for official released (still looking for the best solution)
+You can go to your own farm or free farm plots at the north map (only 4 plots) and use popberry for starting.
+Then after you get enough money, you can get yourself own land and soils to have more plots to plant.
 
 # Requirements
 - Installed Python 2.7+ (https://www.python.org/downloads/)
@@ -44,6 +48,8 @@ Adjust values inside config.txt file to suit your screen and run bot smoothly.
 | AVATAR2_CONFIDENCE | Percentage confidence to find matching avatar2.png image on screen | Percentage | 0.9 |  |
 | REFILL_AMOUNT_PER_MAP | How many times to refill energy on each map | Count | 10 |  |
 | WAIT_DURATION_AFTER_WARP | How many second to wait after warp | Second | 10 |  |
+| WAIT_DURATION_AFTER_WATER | How many second to wait after water | Second | 60 |  |
+| MOVEMENT_DURATION | How many second to move mouse from one position to another (For smooth movement) | Second | 0.3 |  |
 | RANDOM_CLICK_SIZE | To prevent bot detection it will slightly random click position | Pixel | 5 |  |
 
 # Remarks
@@ -52,6 +58,15 @@ Adjust values inside config.txt file to suit your screen and run bot smoothly.
   0xbf20064C795362e7A87F6d21fe3C57Bd99e4a9A5
 
 # Changelog
+## v 0.0.11
++ Added popberry type sample image
++ Added butterberry type sample image
++ You can now config PLANT_TYPE to popberry or butterberry
++ Added watering system
++ Added `WAIT_AFTER_WATER` configs
++ Added `MOVEMENT_DURATION` configs
+- Disabled warp to next farm
+
 ## v 0.0.10
 + Update support new version
 + Update avatar locate instead of name

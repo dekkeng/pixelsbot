@@ -27,6 +27,8 @@ class Player:
         self.AVATAR2_CONFIDENCE = float(os.getenv('AVATAR2_CONFIDENCE', 0.9))
         self.REFILL_AMOUNT_PER_MAP = float(os.getenv('REFILL_AMOUNT_PER_MAP', 10))
         self.WAIT_DURATION_AFTER_WARP = float(os.getenv('WAIT_DURATION_AFTER_WARP', 10))
+        self.WAIT_DURATION_AFTER_WATER = float(os.getenv('WAIT_DURATION_AFTER_WATER', 0))
+        self.MOVEMENT_DURATION = float(os.getenv('MOVEMENT_DURATION', 1))
         self.RANDOM_CLICK_SIZE = float(os.getenv('RANDOM_CLICK_SIZE', 5))
 
         self.updatePos()
@@ -40,6 +42,7 @@ class Player:
         self.rotten2 = self.getAllPos(self.PLANT_TYPE + "/rotten2", self.ROTTEN2_CONFIDENCE)
         self.warp = list(self.getAllPos("warp", self.WARP_CONFIDENCE))
         self.scissor = self.getPos("scissor")
+        self.water = self.getPos("water")
         self.seed = self.getPos(self.PLANT_TYPE + "/seed") 
         self.fruit = self.getPos(self.PLANT_TYPE + "/fruit")
         self.fertilize = self.getPos("fertilize")
@@ -52,9 +55,9 @@ class Player:
     
     def havestAll(self):
         self.log("Harvest")
-        self.walk(self.START_MAP_WALK_DIR, self.START_MAP_WALK_STEP)
-        self.walk("right", 0.03)
-        self.wait(0.5)
+        #self.walk(self.START_MAP_WALK_DIR, self.START_MAP_WALK_STEP)
+        #self.walk("right", 0.03)
+        #self.wait(0.5)
         self.updatePos()
         self.clickScissor()
         scissor_pos = self.scissor
@@ -75,6 +78,18 @@ class Player:
         self.wait(1)
         self.click(seed_pos)
         self.move(self.chat)
+    def waterAll(self):
+        self.log("Water")
+        self.updatePos()
+        self.clickWater()
+        water_pos = self.water
+        for e in list(self.grow1) + list(self.grow2):
+            self.click(e)
+            self.wait()
+        self.wait(1)
+        self.click(water_pos)
+        self.move(self.chat)
+        self.wait(self.WAIT_DURATION_AFTER_WATER)
     def fertilizeAll(self):
         self.log("Fertilize")
         self.updatePos()
@@ -138,6 +153,9 @@ class Player:
     def clickScissor(self):
         if self.scissor != None:
             self.click(self.scissor)
+    def clickWater(self):
+        if self.water != None:
+            self.click(self.water)
     def clickFertilize(self):
         if self.fertilize != None:
             self.click(self.fertilize)
@@ -162,9 +180,10 @@ class Player:
         sleep(uniform(length-0.01, length+0.01))
 
     def move(self, pos):
-        pyautogui.moveTo(pos)
+        pyautogui.moveTo(pos, duration=self.MOVEMENT_DURATION)
         
     def click(self, pos):
+        self.move(pos)
         pyautogui.click([uniform(pos[0], pos[0]+self.RANDOM_CLICK_SIZE), uniform(pos[1], pos[1]+self.RANDOM_CLICK_SIZE)])
         
     def log(self, msg):
