@@ -31,6 +31,13 @@ class Player:
         self.WAIT_DURATION_AFTER_WATER = float(os.getenv('WAIT_DURATION_AFTER_WATER', 0))
         self.MOVEMENT_DURATION = float(os.getenv('MOVEMENT_DURATION', 1))
         self.RANDOM_CLICK_SIZE = float(os.getenv('RANDOM_CLICK_SIZE', 5))
+        self.WALK_TO_ENABLED = int(os.getenv('WALK_TO_ENABLED', 0))
+        self.KEY_SHORTCUT_ENABLED = int(os.getenv('KEY_SHORTCUT_ENABLED', 0))
+        self.KEY_SHORTCUT_WATERING = str(os.getenv('KEY_SHORTCUT_WATERING', 1))
+        self.KEY_SHORTCUT_SCISSOR = str(os.getenv('KEY_SHORTCUT_SCISSOR', 2))
+        self.KEY_SHORTCUT_SEED = str(os.getenv('KEY_SHORTCUT_SEED', 3))
+        self.KEY_SHORTCUT_FRUIT = str(os.getenv('KEY_SHORTCUT_FRUIT', 4))
+        self.KEY_SHORTCUT_FERTILIZE = str(os.getenv('KEY_SHORTCUT_FERTILIZE', 5))
 
         self.updatePos()
 
@@ -64,10 +71,11 @@ class Player:
         self.clickScissor()
         scissor_pos = self.scissor
         for f in list(self.full) + list(self.rotten) + list(self.rotten2):
+            self.walkTo(f)
             self.click(f)
             self.wait()
         self.wait(1)
-        self.click(scissor_pos)
+        self.clickScissor(scissor_pos)
         self.move(self.chat)
     def plantAll(self):
         self.log("Plant")
@@ -75,10 +83,11 @@ class Player:
         self.clickSeed()
         seed_pos = self.seed
         for e in self.empty:
+            self.walkTo(e)
             self.click(e)
             self.wait()
         self.wait(1)
-        self.click(seed_pos)
+        self.clickSeed(seed_pos)
         self.move(self.chat)
     def waterAll(self):
         self.log("Water")
@@ -86,10 +95,11 @@ class Player:
         self.clickWater()
         water_pos = self.water
         for e in list(self.grow1) + list(self.grow2) + list(self.dry):
+            self.walkTo(e)
             self.click(e)
             self.wait()
         self.wait(1)
-        self.click(water_pos)
+        self.clickWater(water_pos)
         self.move(self.chat)
         self.wait(self.WAIT_DURATION_AFTER_WATER)
     def fertilizeAll(self):
@@ -98,10 +108,11 @@ class Player:
         self.clickFertilize()
         fert_pos = self.fertilize
         for fe in list(self.grow1) + list(self.grow2):
+            self.walkTo(fe)
             self.click(fe)
             self.wait()
         self.wait(1)
-        self.click(fert_pos)
+        self.clickFertilize(fert_pos)
         self.move(self.chat)
     def refillEnergy(self):
         self.log("Refill")
@@ -118,7 +129,7 @@ class Player:
             count = count+1
         #self.walk("right")
         self.wait(1)
-        self.click(fruit_pos)
+        self.clickFruit(fruit_pos)
         self.move(self.chat)
     def warpNext(self):
         self.log("Warp")
@@ -152,20 +163,40 @@ class Player:
                     self.wait(self.WAIT_DURATION_AFTER_WARP)
 
 
-    def clickScissor(self):
-        if self.scissor != None:
+    def clickScissor(self, pos = None):
+        if self.KEY_SHORTCUT_ENABLED == 1:            
+            pyautogui.press(self.KEY_SHORTCUT_SCISSOR)
+        elif pos != None:
+            self.click(pos)
+        elif self.scissor != None:
             self.click(self.scissor)
-    def clickWater(self):
-        if self.water != None:
+    def clickWater(self, pos = None):
+        if self.KEY_SHORTCUT_ENABLED == 1:            
+            pyautogui.press(self.KEY_SHORTCUT_WATERING)
+        elif pos != None:
+            self.click(pos)
+        elif self.water != None:
             self.click(self.water)
-    def clickFertilize(self):
-        if self.fertilize != None:
+    def clickFertilize(self, pos = None):        
+        if self.KEY_SHORTCUT_ENABLED == 1:            
+            pyautogui.press(self.KEY_SHORTCUT_FERTILIZE)
+        elif pos != None:
+            self.click(pos)
+        elif self.fertilize != None:
             self.click(self.fertilize)
-    def clickSeed(self):
-        if self.seed != None:
+    def clickSeed(self, pos = None):
+        if self.KEY_SHORTCUT_ENABLED == 1:            
+            pyautogui.press(self.KEY_SHORTCUT_SEED)
+        elif pos != None:
+            self.click(pos)
+        elif self.seed != None:
             self.click(self.seed)
-    def clickFruit(self):
-        if self.fruit != None:
+    def clickFruit(self, pos = None):
+        if self.KEY_SHORTCUT_ENABLED == 1:            
+            pyautogui.press(self.KEY_SHORTCUT_FRUIT)
+        elif pos != None:
+            self.click(pos)
+        elif self.fruit != None:
             self.click(self.fruit)
 
     def getPos(self, file, conf = 0.6):
@@ -178,6 +209,36 @@ class Player:
         pyautogui.keyDown(dir)
         self.wait(length)
         pyautogui.keyUp(dir)
+    def walkTo(self, pos):
+        if self.WALK_TO_ENABLED != 1: 
+            return
+        self.log("Walkto")
+        near = False
+        count = 0
+        if (self.avatar != None or self.avatar2 != None):
+            while near == False and count < self.WARP_NEAR_TRY_LIMIT:
+                self.updatePos()
+                count = count+1
+                self.wait()
+                if pos != None and (self.avatar != None or self.avatar2 != None):
+                    pos_left = pos[0]
+                    pos_down = pos[1]
+                    if self.avatar != None:
+                        avatar_left = self.avatar[0]
+                        avatar_down = self.avatar[1]
+                    else:
+                        avatar_left = self.avatar2[0]
+                        avatar_down = self.avatar2[1]
+                    if pos_left - avatar_left > self.WARP_NEAR_DECISION:
+                        self.walk("right", self.WARP_NEAR_STEP)
+                    elif pos_left - avatar_left < self.WARP_NEAR_DECISION*-1:
+                        self.walk("left", self.WARP_NEAR_STEP)
+                    elif pos_down - avatar_down > self.WARP_NEAR_DECISION:
+                        self.walk("down", self.WARP_NEAR_STEP)
+                    elif pos_down - avatar_down < self.WARP_NEAR_DECISION*-1:
+                        self.walk("up", self.WARP_NEAR_STEP)
+                    else:
+                        near = True
     def wait(self, length = 0.01):
         sleep(uniform(length-0.01, length+0.01))
 

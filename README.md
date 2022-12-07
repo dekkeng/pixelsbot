@@ -24,13 +24,16 @@ pip install -r requirements.txt
 9. If it not doing right, you need to adjust configurations in config.txt to fir your screen. (You need to change the values and try few times until it works) This should be one time work.
 10. If you want to stop you just open something to hide the game screen and close your running script window.
 
+** You need to walk your avatar to be in range to farm (currently won't walk to the plots automatic) 
+** Don't forget to replace your sample folder with the new sample.default (You can copy only subfolder and files that you don't have in your sample folder)
+
 # Configuration
 There are default configurations that suit my screen, but you can adjust to suit your screen.
 Adjust values inside config.txt file to suit your screen and run bot smoothly.
 
 | Name | Description | Type | Default | Options |
 | --- | --- | --- | --- | --- |
-| PLANT_TYPE | Which plant to use | Option | carrot | carrot, gold |
+| PLANT_TYPE | Which plant to use | Option | popberry | popberry, carrot, butterberry, grainbow |
 | START_MAP_WALK_DIR | To move when start the new map in which direction | Option | down | down, up, left, right |
 | START_MAP_WALK_STEP | How many seconds will you walk at the start of the new map | Second | 0.1 |  |
 | WARP_NEAR_DECISION | How many screen pixels to decide that you are near the warp enough to be able to go through it | Pixel | 150 |  |
@@ -52,6 +55,13 @@ Adjust values inside config.txt file to suit your screen and run bot smoothly.
 | WAIT_DURATION_AFTER_WATER | How many second to wait after water | Second | 60 |  |
 | MOVEMENT_DURATION | How many second to move mouse from one position to another (For smooth movement) | Second | 0.3 |  |
 | RANDOM_CLICK_SIZE | To prevent bot detection it will slightly random click position | Pixel | 5 |  |
+| WALK_TO_ENABLED | (Alpha) Enable walk to target (plant, watering, harvest, fertilize) before do the action to prevent too far from target | Enable | 0 | 0,1 |
+| KEY_SHORTCUT_ENABLED | (Alpha) Enable use key shortcut to select tools instead of click on screen (This will be faster to do actions but need some specific config) | Enable | 0 | 0,1 |
+| KEY_SHORTCUT_WATERING | (Alpha) Shortcut key of the watering can (position of watering can in your inventory) | Number | 1 | 1-6 |
+| KEY_SHORTCUT_SCISSOR | (Alpha) Shortcut key of the scissor (position of scissor in your inventory) | Number | 2 | 1-6 |
+| KEY_SHORTCUT_SEED | (Alpha) Shortcut key of the seed (position of seed in your inventory) | Number | 3 | 1-6 |
+| KEY_SHORTCUT_FRUIT | (Alpha) Shortcut key of the fruit (position of fruit in your inventory) | Number | 4 | 1-6 |
+| KEY_SHORTCUT_FERTILIZE | (Alpha) Shortcut key of the fertilize (position of fertilize in your inventory) | Number | 5 | 1-6 |
 
 # Remarks
 - This bot is created very quickly and might have some glitchs or bugs.
@@ -59,15 +69,27 @@ Adjust values inside config.txt file to suit your screen and run bot smoothly.
   0xbf20064C795362e7A87F6d21fe3C57Bd99e4a9A5
 
 # Changelog
+## v 0.0.12
++ Added grainbow type sample image
++ You can now config PLANT_TYPE to grainbow
++ You can now config to use shortcut key to select tools instead of click on screen (Alpha) 
++ Added `WALK_TO_ENABLED`config
++ Added `KEY_SHORTCUT_ENABLED`config
++ Added `KEY_SHORTCUT_WATERING`config
++ Added `KEY_SHORTCUT_SCISSOR`config
++ Added `KEY_SHORTCUT_SEED`config
++ Added `KEY_SHORTCUT_FRUIT`config
++ Added `KEY_SHORTCUT_FERTILIZE`config
+
 ## v 0.0.11
 + Added popberry type sample image
 + Added butterberry type sample image
 + You can now config PLANT_TYPE to popberry or butterberry
 + Added watering system
 + Added dry.png sample image
-+ Added `DRY_CONFIDENCE` configs
-+ Added `WAIT_AFTER_WATER` configs
-+ Added `MOVEMENT_DURATION` configs
++ Added `DRY_CONFIDENCE` config
++ Added `WAIT_AFTER_WATER` config
++ Added `MOVEMENT_DURATION` config
 - Disabled warp to next farm
 
 ## v 0.0.10
