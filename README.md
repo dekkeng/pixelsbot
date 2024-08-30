@@ -1,3 +1,6 @@
+# THIS REPOSITORY IS NOT MAINTAINED ANYMORE
+I'm not updating this project anymore, but feel free to fork or pull request.
+
 # Farm Bot for pixels.xyz game
 This is a farm bot for pixels.xyz [For education purpose only]
 This will plant seeds and watering, wait for xx seconds and harvest for you infinity loop.
